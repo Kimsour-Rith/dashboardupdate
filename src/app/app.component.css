@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
+
+
+h1 {
+    font-size: 2rem;
+    font-family: 'Lora', serif; 
+    color: #f8f3f3;
+}
+
+.card {
+    border-radius: 4%;
+    box-shadow: 0 0 10px 0 rgba(100, 100, 100, 0.26);
+}
+
+img{
+    width: 20vw;
+    height: 14vh;
+    
+
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+}
+svg {
+    /* margin-left: 10px; */
+    width: 140px;
+    height: auto;
+    transform: rotate(-90deg);
+    /* overflow: initial; */
+}
+
+.rectangle {
+    height: 50px;
+    width: 100px;
+    background-color: #555;
+  }
+circle {
+    fill: none;
+    stroke-width: 15px;
+}
+.circle1 {
+    stroke: rgb(89, 233, 89);
+    position: relative;
+    z-index: 1;    
+    stroke-dashoffset:calc(50 * 6);
+    stroke-dasharray:calc(49 * 6);
+    stroke-dashoffset:calc((50 * 6) - ((50 * 6) * 100) / 100); 
+}
+
+.circle1_on{
+    stroke: rgb(241, 48, 48);
+    position: relative;
+    z-index: 1;    
+    stroke-dashoffset:calc(50 * 6);
+    stroke-dasharray:calc(49 * 6);
+    stroke-dashoffset:calc((50 * 6) - ((50 * 6) * 100) / 100); 
+}
+
+.circle2 {
+    stroke: rgb(89, 233, 89);
+    position: relative;
+    z-index: 1;    
+    stroke-dashoffset:calc(50 * 6);
+    stroke-dasharray:calc(49 * 6);
+    stroke-dashoffset:calc((50 * 6) - ((50 * 6) * 80) / 100); 
+}
+
+.circle2_on{
+    stroke: rgb(241, 48, 48);
+    position: relative;
+    z-index: 1;    
+    stroke-dashoffset:calc(50 * 6);
+    stroke-dasharray:calc(49 * 6);
+    stroke-dashoffset:calc((50 * 6) - ((50 * 6) * 80) / 100);
+}
+
+.circle3 {
+    stroke: rgb(89, 233, 89);
+    position: relative;
+    z-index: 1;    
+    stroke-dashoffset:calc(50 * 6);
+    stroke-dasharray:calc(49 * 6);
+    stroke-dashoffset:calc((50 * 6) - ((50 * 6) * 60) / 100); 
+}
+
+.circle3_on{
+    stroke: rgb(241, 48, 48);
+    position: relative;
+    z-index: 1;    
+    stroke-dashoffset:calc(50 * 6);
+    stroke-dasharray:calc(49 * 6);
+    stroke-dashoffset:calc((50 * 6) - ((50 * 6) * 60) / 100);
+}
+
+.circle4 {
+    stroke: rgb(89, 233, 89);
+    position: relative;
+    z-index: 1;    
+    stroke-dashoffset:calc(50 * 6);
+    stroke-dasharray:calc(49 * 6);
+    stroke-dashoffset:calc((50 * 6) - ((50 * 6) * 40) / 100); 
+}
+
+.circle4_on {
+    stroke: rgb(241, 48, 48);
+    position: relative;
+    z-index: 1;    
+    stroke-dashoffset:calc(50 * 6);
+    stroke-dasharray:calc(49 * 6);
+    stroke-dashoffset:calc((50 * 6) - ((50 * 6) * 40) / 100); 
+}
+
+.circle5 {
+    stroke: rgb(89, 233, 89);
+    position: relative;
+    z-index: 1;    
+    stroke-dashoffset:calc(50 * 6);
+    stroke-dasharray:calc(49 * 6);
+    stroke-dashoffset:calc((50 * 6) - ((50 * 6) * 20) / 100); 
+}
+.circle5_on {
+    stroke: rgb(241, 48, 48);
+    position: relative;
+    z-index: 1;    
+    stroke-dashoffset:calc(50 * 6);
+    stroke-dasharray:calc(49 * 6);
+    stroke-dashoffset:calc((50 * 6) - ((50 * 6) * 20) / 100); 
+}
+
+.circle6 {
+    stroke: rgb(241, 48, 48);
+    position: relative;
+    z-index: 1;    
+    stroke-dashoffset:calc(50 * 6);
+    stroke-dasharray:calc(49 * 6);
+    stroke-dashoffset:calc((50 * 6) - ((50 * 6) * 100) / 100); 
+}
+
+
+@media screen and (max-width:1200px){
+    img{
+        width: 40%;
+    }
+    h1 {
+        font-size: 1.5rem;
+        font-family: 'Lora', serif; 
+    }
+}

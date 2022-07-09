@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+  crossorigin="anonymous">
+ 
+</head>
+<body>
+  <aside>
+    <div class="navbar bg-info py-0">
+      <h1>DASHBOARD</h1>
+      <img src="assets/image/Escott_logo.svg" class="py-3" alt="">
+    </div>
+
+  </aside>
+  
+  <main class="w-100 bg-light p-4">
+    <div class="container">
+      <div class="card-deck mt-2 shadow">
+        <div class="top-row card" *ngFor="let machine of top_row">
+          <div class="machine washer card-block"> 
+            <!-- <div class="bar"> -->
+              <h5 class="card-title p-3">{{machine.type}}</h5>
+              
+              <div class="info card-body float-container p-2">
+                <div class="">
+                  <!-- circular -->
+
+                  <!-- machine is off current use = 5  -->
+                  <svg  *ngIf="!machine.isOn && machine.current_usage == 5">
+                    <circle class="circle1" cx="70" cy="70" r="45"/> 
+                  </svg>
+
+                   <!-- machine is on current use = 5  -->
+                   <svg  *ngIf="machine.isOn && machine.current_usage == 5">
+                    <circle class="circle1_on" cx="70" cy="70" r="45"/> 
+                  </svg>
+
+                  <!-- machine is off current use = 4  -->
+                  <svg  *ngIf="(!machine.isOn && machine.current_usage == 4)">
+                    <circle class="circle2" cx="70" cy="70" r="45"/>
+                  </svg>
+
+                  <!-- machine is on current use = 4  -->
+                  <svg  *ngIf="(machine.isOn && machine.current_usage == 4)">
+                    <circle class="circle2_on" cx="70" cy="70" r="45"/>
+                  </svg>
+                  <!-- machine is off current use = 3  -->
+                  <svg *ngIf="!machine.isOn &&machine.current_usage == 3">
+                    <circle class="circle3" cx="70" cy="70" r="45" />
+                  </svg>
+                  <!-- machine is on current use = 3  -->
+                  <svg *ngIf="machine.isOn &&machine.current_usage == 3">
+                    <circle class="circle3_on" cx="70" cy="70" r="45" />
+                  </svg>
+
+                  <!-- machine is off current use = 2  -->
+                  <svg *ngIf="!machine.isOn &&machine.current_usage == 2">
+                    <circle class="circle4" cx="70" cy="70" r="45" />
+                  </svg>
+                  <!-- machine is on current use = 2  -->
+                  <svg *ngIf="machine.isOn &&machine.current_usage == 2">
+                    <circle class="circle4_on" cx="70" cy="70" r="45" />
+                  </svg>
+
+                  <!-- machine is off current use = 1  -->
+                  <svg *ngIf="!machine.isOn &&machine.current_usage == 1">
+                    <circle class="circle5" cx="70" cy="70" r="45"/>
+                  </svg>
+                  <!-- machine is on current use = 1  -->
+                  <svg *ngIf="machine.isOn &&machine.current_usage == 1">
+                    <circle class="circle5_on" cx="70" cy="70" r="45"/>
+                  </svg>
+
+                  <!-- machine is off current use = 0  -->
+                  <svg *ngIf="!machine.isOn &&machine.current_usage == 0">
+                    <circle class="circle6" cx="70" cy="70" r="45" />
+                  </svg>
+
+                </div>
+                  
+               
+                <div class="card-text float-right p-2 ">
+                 
+                  <p> ID: {{machine.mid}}</p>
+                  <p> Max Load: {{machine.max_usage}}</p>
+                  <p> Current Usage : {{machine.current_usage}} </p>
+              
+                  <!-- // Countdown   -->
+                  <!-- BigWasher1 -->
+                  <p *ngIf="machine.isOn && (machine.max_usage >= machine.current_usage) && (machine.current_usage > 0) && ( machine.mid == 1)"> 
+                    Countdown : <countdown [config]="config1" (event)="handleEventBigWasher1($event)"></countdown>
+                  </p>
+                   <!-- BigWasher2-->
+                   <p *ngIf="machine.isOn && (machine.max_usage >= machine.current_usage) && (machine.current_usage > 0) && ( machine.mid == 2)"> 
+                    Countdown : <countdown [config]="config2" (event)="handleEventBigWasher2($event)"></countdown>
+                  </p>
+                  <!-- <p *ngIf="machine.isOn && (machine.max_usage >= machine.current_usage) &&(machine.current_usage > 0) && (machine.mid == 3)"> 
+                    Countdown : <countdown [config]="config" (event)="handleEventWasher($event)"></countdown>
+                  </p> -->
+
+                  <p *ngIf="!machine.isOn ||(machine.current_usage == 0)">
+                    Countdown : <countdown></countdown>
+                  </p>
+
+                  <!-- Status -->
+                  
+                  <button type="button" class="btn btn-danger  text-light h5 "
+                    *ngIf="(machine.current_usage == 0)" 
+                    style="height:45px">Out of Use
+                  </button>
+
+                  <button type="button" class="btn btn-danger text-light h5"
+                    *ngIf="machine.isOn && (machine.max_usage >= machine.current_usage) &&(machine.current_usage > 0)"
+                    style="height:45px">Unavailable
+                  </button>
+                
+                  <button type="button" class="btn btn-success text-light h5" 
+                    *ngIf = "!machine.isOn && (machine.max_usage >= machine.current_usage) && (machine.current_usage > 0)"
+                    style="height:45px">Available
+                  </button>
+                </div>
+              </div> 
+           
+          </div>
+        </div>
+      </div>
+    
+      <div class="card-deck mt-4">
+        <div class="bot-row card" *ngFor="let machine of bot_row">
+          <div class="machine washer card-block">
+              <h5 class="card-title p-3">{{machine.type}}</h5>
+              <div class="info card-body float-container p-2">
+                <div class="">
+
+                  <!-- toggle on off -->
+                  <!-- <div class="rectangle">
+                    <div class="circle rounded-circle">  </div>
+                  </div> -->
+
+                  <!-- circular -->
+
+                  <!-- machine is off current use = 5  -->
+                  <svg  *ngIf="!machine.isOn && machine.current_usage == 5">
+                    <circle class="circle1" cx="70" cy="70" r="45"/> 
+                  </svg>
+
+                   <!-- machine is on current use = 5  -->
+                   <svg  *ngIf="machine.isOn && machine.current_usage == 5">
+                    <circle class="circle1_on" cx="70" cy="70" r="45"/> 
+                  </svg>
+
+                  <!-- machine is off current use = 4  -->
+                  <svg  *ngIf="(!machine.isOn && machine.current_usage == 4)">
+                    <circle class="circle2" cx="70" cy="70" r="45"/>
+                  </svg>
+
+                  <!-- machine is on current use = 4  -->
+                  <svg  *ngIf="(machine.isOn && machine.current_usage == 4)">
+                    <circle class="circle2_on" cx="70" cy="70" r="45"/>
+                  </svg>
+                  <!-- machine is off current use = 3  -->
+                  <svg *ngIf="!machine.isOn &&machine.current_usage == 3">
+                    <circle class="circle3" cx="70" cy="70" r="45" />
+                  </svg>
+                  <!-- machine is on current use = 3  -->
+                  <svg *ngIf="machine.isOn &&machine.current_usage == 3">
+                    <circle class="circle3_on" cx="70" cy="70" r="45" />
+                  </svg>
+
+                  <!-- machine is off current use = 2  -->
+                  <svg *ngIf="!machine.isOn &&machine.current_usage == 2">
+                    <circle class="circle4" cx="70" cy="70" r="45" />
+                  </svg>
+                  <!-- machine is on current use = 2  -->
+                  <svg *ngIf="machine.isOn &&machine.current_usage == 2">
+                    <circle class="circle4_on" cx="70" cy="70" r="45" />
+                  </svg>
+
+                  <!-- machine is off current use = 1  -->
+                  <svg *ngIf="!machine.isOn &&machine.current_usage == 1">
+                    <circle class="circle5" cx="70" cy="70" r="45"/>
+                  </svg>
+                  <!-- machine is on current use = 1  -->
+                  <svg *ngIf="machine.isOn &&machine.current_usage == 1">
+                    <circle class="circle5_on" cx="70" cy="70" r="45"/>
+                  </svg>
+
+                  <!-- machine is off current use = 0  -->
+                  <svg *ngIf="!machine.isOn &&machine.current_usage == 0">
+                    <circle class="circle6" cx="70" cy="70" r="45" />
+                  </svg>
+
+                </div>
+                <div class="card-text float-right p-2">
+                  
+                  <p > ID: {{machine.mid}}</p>
+                  <p> Max Usage: {{machine.max_usage}}</p>
+                  <p> Current Usage : {{machine.current_usage}} </p>
+
+                  <!-- Countdown   -->
+                  <p *ngIf="machine.isOn && (machine.max_usage >= machine.current_usage) && (machine.current_usage > 0)"> 
+                    Countdown : <countdown #countdown [config]="{demand: machine.isOn, leftTime:3600}"></countdown>
+                  </p>
+      
+                  <p *ngIf="!machine.isOn || (machine.current_usage > machine.max_usage)">
+                    Countdown : <countdown></countdown>
+                  </p>
+
+                  <!-- //Status   -->
+                  <button type="button" class="btn btn-danger text-light h5 "
+                   *ngIf="(machine.current_usage == 0)" 
+                    style="height:45px">Out of Use
+                  </button>
+        
+                  <button type="button" class="btn btn-danger text-light h5" 
+                    *ngIf="machine.isOn && (machine.max_usage >= machine.current_usage) &&(machine.current_usage > 0)"
+                    style="height:45px">Unavailble
+                  </button>
+    
+                  <button type="button" class="btn btn-success text-light h5"
+                    *ngIf = "!machine.isOn && (machine.max_usage >= machine.current_usage) &&(machine.current_usage > 0)"
+                    style="height:45px">Available
+                  </button>   
+                </div>  
+              </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
+  
+
+
